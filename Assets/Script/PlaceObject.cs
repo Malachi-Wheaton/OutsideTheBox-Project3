@@ -6,6 +6,10 @@ public class PlaceObject : MonoBehaviour
     private Vector3 offset;
     private Camera cam;
 
+    [Header("Settings")]
+    public bool canMove = true; 
+    public float rotationStep = 15f;
+
     void Start()
     {
         cam = Camera.main;
@@ -13,37 +17,64 @@ public class PlaceObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        isDragging = true;
-        offset = transform.position - GetMouseWorldPosition();
+        if (canMove)
+        {
+            isDragging = true;
+            offset = transform.position - GetMouseWorldPosition();
 
-        // Optional: turn off physics while dragging
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-            rb.bodyType = RigidbodyType2D.Kinematic;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 
     void OnMouseUp()
     {
-        isDragging = false;
+        if (canMove)
+        {
+            isDragging = false;
 
-        // Turn physics back on when you drop it
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 
     void Update()
     {
-        if (isDragging)
+        if (canMove && isDragging)
         {
             transform.position = GetMouseWorldPosition() + offset;
         }
+
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RotateObject(rotationStep);
+        }
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R))
+        {
+            RotateObject(-rotationStep);
+        }
+
+        float scroll = Input.mouseScrollDelta.y;
+        if (scroll != 0)
+        {
+            RotateObject(scroll * rotationStep);
+        }
+    }
+
+    void RotateObject(float degrees)
+    {
+        transform.Rotate(0, 0, degrees);
     }
 
     Vector3 GetMouseWorldPosition()
     {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10f; // distance from camera
+        mousePos.z = 10f;
         return cam.ScreenToWorldPoint(mousePos);
     }
 }
+
+

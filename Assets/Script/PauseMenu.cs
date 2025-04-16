@@ -13,7 +13,7 @@ public class PauseManager : MonoBehaviour
 
     void Awake()
     {
-        // Make this script globally accessible
+        
         if (Instance == null)
             Instance = this;
     }
@@ -56,10 +56,17 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void QuitGame()
+    public void LoadMainMenuScene()
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+
+    public void LoadLevelManagerScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("LevelSelect"); 
     }
 }
 
