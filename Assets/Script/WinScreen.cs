@@ -15,7 +15,10 @@ public class GoalTrigger2D : MonoBehaviour
         if (other.CompareTag("Weight"))
         {
             winText.text = "You Win!";
+
+            // Tell the pause manager we won
+            PauseManager.Instance.ShowWinScreen();
         }
     }
-
 }
+
