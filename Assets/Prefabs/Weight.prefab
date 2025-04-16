@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9040651246983840413}
   - component: {fileID: 7733922892259174762}
   - component: {fileID: 3648086882692946322}
-  - component: {fileID: 5379388598314548176}
+  - component: {fileID: 1967329094947928002}
   m_Layer: 0
   m_Name: Weight
   m_TagString: Weight
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceFromChainEnd: 0.6
---- !u!61 &5379388598314548176
-BoxCollider2D:
+--- !u!58 &1967329094947928002
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,15 +160,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
-  m_EdgeRadius: 0
+  m_Radius: 0.32

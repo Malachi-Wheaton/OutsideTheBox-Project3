@@ -17,4 +17,5 @@ public class GoalTrigger2D : MonoBehaviour
             winText.text = "You Win!";
         }
     }
+
 }
